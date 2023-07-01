@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"isolatedModules": true,
+		"emitDeclarationOnly": true,
+		"outDir": "./dist",
+		"target": "ESNext",
+		"strict": false,
+		"allowImportingTsExtensions": false,
+		"module": "NodeNext",
+		"types": ["node"],
+		"declaration": true,
+		"declarationDir": "./dist"
+	},
+	"include": ["./src/**/*"]
+}

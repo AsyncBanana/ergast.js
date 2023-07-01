@@ -1,0 +1,45 @@
+{
+  "name": "ergast",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "node build.js && tsc",
+    "test": "node --loader @esbuild-kit/esm-loader --test test/*.ts "
+  },
+  "keywords": [],
+  "author": "Jacob Jackson <jej.jackson.08@gmail.com> (asyncbanana.dev)",
+  "license": "MIT",
+  "devDependencies": {
+    "@esbuild-kit/esm-loader": "^2.5.5",
+    "@types/node": "^20.3.2",
+    "esbuild": "^0.18.8",
+    "globby": "^13.2.0",
+    "typescript": "^5.1.6"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./drivers": {
+      "types": "./dist/drivers.d.ts",
+      "default": "./dist/drivers.js"
+    },
+    "./races": {
+      "types": "./dist/races.d.ts",
+      "default": "./dist/races.js"
+    }
+  },
+  "files": [
+    "dist",
+    "Ergast.js.svg"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asyncbanana/ergast.js.git"
+  }
+}

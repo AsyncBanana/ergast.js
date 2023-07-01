@@ -1,6 +1,6 @@
 # Contributing to Ergast.js
 
-Thanks for your interest in contributing! First, make sure to read over the [Code of Conduct](https://github.com/AsyncBanana/CODE_OF_CONDUCT.md). Now, here is how you can contribute
+Thanks for your interest in contributing! First, make sure to read over the [Code of Conduct](https://github.com/AsyncBanana/ergast.js/blob/main/CODE_OF_CONDUCT.md). Now, here is how you can contribute
 
 > Please note that this is not a comprehensive list
 

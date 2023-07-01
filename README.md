@@ -95,4 +95,4 @@ Once again, to find information on all current available API methods, simply loo
 
 ## Contributing
 
-To learn how to contribute, check out the [contribution page](https://github.com/AsyncBanana/Ergast.js/CONTRIBUTING.md)
+To learn how to contribute, check out the [contribution page](https://github.com/AsyncBanana/ergast.js/blob/main/CONTRIBUTING.md)

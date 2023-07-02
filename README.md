@@ -2,9 +2,12 @@
 
 ![Ergast.js logo](Ergast.js.svg)
 
-Ergast.js is a simple, portable, zero dependency API wrapper for the F1 API [Ergast](http://ergast.com/mrd/). It can be run on Node.js, the browser, or almost anywehere else JavaScript can be run, and is written entirely in TypeScript.
+![MIT License Badge](https://img.shields.io/npm/l/ergast?style=for-the-badge) ![Zero Dependencies Badge](https://img.shields.io/badge/Dependencies-0-darkgreen?style=for-the-badge)
+![Compressed package size](https://img.shields.io/bundlephobia/minzip/ergast?style=for-the-badge) ![NPM Version](https://img.shields.io/npm/v/ergast?style=for-the-badge)
 
 **Currently unstable and incomplete; Only race and driver data APIs are available**
+
+Ergast.js is a simple, portable, zero dependency API wrapper for the F1 API [Ergast](http://ergast.com/mrd/). It can be run on Node.js, the browser, or almost anywehere else JavaScript can be run, and is written entirely in TypeScript.
 
 </div>
 

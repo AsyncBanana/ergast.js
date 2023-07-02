@@ -1,7 +1,6 @@
 {
 	"compilerOptions": {
 		"isolatedModules": true,
-		"emitDeclarationOnly": true,
 		"outDir": "./dist",
 		"target": "ESNext",
 		"strict": false,

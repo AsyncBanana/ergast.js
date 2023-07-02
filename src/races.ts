@@ -42,7 +42,7 @@ export interface _BaseResult {
 	FastestLap: _BaseLap;
 }
 
-interface _NeutralRace {
+export interface ScheduledRace {
 	season: number;
 	round: number;
 	url: string;
@@ -63,20 +63,11 @@ interface _NeutralRace {
 /**
  * Information about the race; slightly changed from Ergast's data to take advantage of JavaScript's datatypes
  */
-interface Race extends _NeutralRace {
+export interface Race extends ScheduledRace {
 	Results: Result[];
 }
-/**
- * Information about a scheduled race; Returned from `getSchedule`
- */
-export interface ScheduledRace extends _NeutralRace {
-	FirstPractice: Date;
-	SecondPractice: Date;
-	ThirdPractice: Date;
-	Qualifying: Date;
-}
 
-interface _BaseNeutralRace {
+interface _BaseScheduledRace {
 	season: string;
 	round: string;
 	url: string;
@@ -100,31 +91,8 @@ interface _BaseNeutralRace {
  * @internal
  * Ergast's representation of a race
  */
-export interface _BaseRace extends _BaseNeutralRace {
+export interface _BaseRace extends _BaseScheduledRace {
 	Results: _BaseResult[];
-}
-
-/**
- * @internal
- * Ergast's representation of a scheduled race
- */
-export interface _BaseScheduledRace extends _BaseNeutralRace {
-	FirstPractice: {
-		date: string;
-		time: string;
-	};
-	SecondPractice: {
-		date: string;
-		time: string;
-	};
-	ThirdPractice: {
-		date: string;
-		time: string;
-	};
-	Qualifying: {
-		date: string;
-		time: string;
-	};
 }
 
 function _transformResult(result: _BaseResult): Result {
@@ -158,16 +126,6 @@ function _transformScheduledRace(race: _BaseScheduledRace): ScheduledRace {
 		season: +race.season,
 		round: +race.round,
 		dateTime: new Date(`${race.date}T${race.time}`),
-		FirstPractice: new Date(
-			`${race.FirstPractice.date}T${race.FirstPractice.time}`
-		),
-		SecondPractice: new Date(
-			`${race.SecondPractice.date}T${race.SecondPractice.time}`
-		),
-		ThirdPractice: new Date(
-			`${race.ThirdPractice.date}T${race.ThirdPractice.time}`
-		),
-		Qualifying: new Date(`${race.Qualifying.date}T${race.Qualifying.time}`),
 	};
 }
 /**
@@ -180,11 +138,10 @@ export default class Races extends SubClass {
 	 * @returns Race schedule
 	 */
 	async getSchedule(
-		season: number | "current" = this.season
+		season: number | "current" = this.season,
 	): Promise<ScheduledRace[] | undefined> {
-		const res = (
-			await (await fetch(`${this.endpoint}/${season}.json`)).json()
-		).MRData;
+		const res = (await (await fetch(`${this.endpoint}/${season}.json`)).json())
+			.MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");
 		}
@@ -199,16 +156,31 @@ export default class Races extends SubClass {
 	 */
 	async get(
 		season: number | "current" = this.season,
-		round: number = this.round
-	): Promise<Race[] | undefined> {
+		round: number = this.round,
+	): Promise<Race | undefined> {
 		const res = (
 			await (
 				await fetch(
-					`${this.endpoint}/${season}/${
-						round || "latest"
-					}/results.json`
+					`${this.endpoint}/${season}/${round || "latest"}/results.json`,
 				)
 			).json()
+		).MRData;
+		if (res.total < 1) {
+			throw new Error("No races found");
+		}
+		const data: _BaseRace = res.RaceTable.Races[0];
+		return _transformRace(data);
+	}
+	/**
+	 * Get results for all races in a season
+	 * @param season Season year
+	 * @returns Race results
+	 */
+	async getAll(
+		season: number | "current" = this.season,
+	): Promise<Race[] | undefined> {
+		const res = (
+			await (await fetch(`${this.endpoint}/${season}/results.json`)).json()
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");

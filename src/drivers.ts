@@ -40,9 +40,7 @@ export default class Drivers extends SubClass {
 	 */
 	async get(driverId: string): Promise<Driver | undefined> {
 		const res = (
-			await (
-				await fetch(`${this.endpoint}/drivers/${driverId}.json`)
-			).json()
+			await (await fetch(`${this.endpoint}/drivers/${driverId}.json`)).json()
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No driver found");
@@ -58,14 +56,14 @@ export default class Drivers extends SubClass {
 	 */
 	async getAll(
 		year: number | "current" = this.season,
-		round: number = this.round
+		round: number = this.round,
 	): Promise<Driver[] | undefined> {
 		const res = (
 			await (
 				await fetch(
-					`${this.endpoint}${year ? "/" + year : ""}${
-						round ? "/" + round : ""
-					}/drivers.json`
+					`${this.endpoint}${year ? `/${year}` : ""}${
+						round ? `/${round}` : ""
+					}/drivers.json`,
 				)
 			).json()
 		).MRData;

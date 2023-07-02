@@ -17,12 +17,12 @@ export default class APICache {
 	get(path: string[]): unknown | Promise<unknown> | undefined {
 		const res = path.reduce(
 			(cacheEl, pathEl) => cacheEl?.[pathEl],
-			this.#cache
+			this.#cache,
 		);
 		if (this.ttl < 0) {
 			const ttlRes: TTLCache = path.reduce(
 				(cacheEl, pathEl) => cacheEl?.[pathEl],
-				this.#ttlCache
+				this.#ttlCache,
 			);
 			if (!this.#checkTTL(res, ttlRes)) {
 				return undefined;
@@ -67,13 +67,10 @@ export default class APICache {
 		for (const property in obj) {
 			if (
 				typeof property[obj] === "object" &&
-				richTypes[
-					Object.getPrototypeOf(property[obj])?.constructor?.name
-				]
+				richTypes[Object.getPrototypeOf(property[obj])?.constructor?.name]
 			) {
 				if (
-					ttlObj[property] +
-						this.ttl * 1e3 /* millisecond to second */ <
+					ttlObj[property] + this.ttl * 1e3 /* millisecond to second */ <
 					performance.now()
 				) {
 					// object is outdated

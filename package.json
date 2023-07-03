@@ -1,6 +1,6 @@
 {
 	"name": "ergast",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A simple, portable, zero dependency API wrapper for the F1 API Ergast.",
 	"scripts": {
 		"build": "tsc",
@@ -25,15 +25,15 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"import": "./dist/index.js"
 		},
 		"./drivers": {
 			"types": "./dist/drivers.d.ts",
-			"default": "./dist/drivers.js"
+			"import": "./dist/drivers.js"
 		},
 		"./races": {
 			"types": "./dist/races.d.ts",
-			"default": "./dist/races.js"
+			"import": "./dist/races.js"
 		}
 	},
 	"files": ["dist", "Ergast.js.svg"],

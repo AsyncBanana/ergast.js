@@ -139,8 +139,8 @@ export default class Races extends SubClass {
 	 */
 	async getSchedule(
 		season: number | "current" = this.season,
-	): Promise<ScheduledRace[] | undefined> {
-		const res = (await (await fetch(`${this.endpoint}/${season}.json`)).json())
+	): Promise<ScheduledRace[]> {
+		const res = (await this.cache.fetch(`${this.endpoint}/${season}.json`))
 			.MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");
@@ -157,13 +157,11 @@ export default class Races extends SubClass {
 	async get(
 		season: number | "current" = this.season,
 		round: number = this.round,
-	): Promise<Race | undefined> {
+	): Promise<Race> {
 		const res = (
-			await (
-				await fetch(
-					`${this.endpoint}/${season}/${round || "latest"}/results.json`,
-				)
-			).json()
+			await this.cache.fetch(
+				`${this.endpoint}/${season}/${round || "latest"}/results.json`,
+			)
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");
@@ -176,11 +174,9 @@ export default class Races extends SubClass {
 	 * @param season Season year
 	 * @returns Race results
 	 */
-	async getAll(
-		season: number | "current" = this.season,
-	): Promise<Race[] | undefined> {
+	async getAll(season: number | "current" = this.season): Promise<Race[]> {
 		const res = (
-			await (await fetch(`${this.endpoint}/${season}/results.json`)).json()
+			await this.cache.fetch(`${this.endpoint}/${season}/results.json`)
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");

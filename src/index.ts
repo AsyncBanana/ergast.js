@@ -2,7 +2,7 @@ import Core from "./core.js";
 import Drivers, { type Driver } from "./drivers.js";
 import type { Options } from "./core.js";
 import APICache from "./cache.js";
-import Races, { type ScheduledRace, type Result } from "./races.js";
+import Races, { type ScheduledRace, type Result, type Race } from "./races.js";
 import Standings, {
 	type ConstructorStanding,
 	type DriverStanding,
@@ -26,7 +26,7 @@ export default class ErgastAPI extends Core {
 		const {
 			season = "current",
 			round,
-			ttl = 120,
+			ttl = 10,
 			endpoint = "https://ergast.com/api/f1",
 		} = Config;
 		super({
@@ -49,4 +49,5 @@ export {
 	Constructor,
 	ConstructorStanding,
 	DriverStanding,
+	Race,
 };

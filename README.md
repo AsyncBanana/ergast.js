@@ -5,7 +5,7 @@
 ![MIT License Badge](https://img.shields.io/npm/l/ergast?style=for-the-badge) ![Zero Dependencies Badge](https://img.shields.io/badge/Dependencies-0-darkgreen?style=for-the-badge)
 ![Compressed package size](https://img.shields.io/bundlephobia/minzip/ergast?style=for-the-badge) ![NPM Version](https://img.shields.io/npm/v/ergast?style=for-the-badge)
 
-**Currently unstable and incomplete; Only race and driver data APIs are available**
+**Currently unstable and incomplete; Not all data APIs available**
 
 Ergast.js is a simple, portable, zero dependency API wrapper for the F1 API [Ergast](http://ergast.com/mrd/). It can be run on Node.js, the browser, or almost anywehere else JavaScript can be run, and is written entirely in TypeScript.
 
@@ -13,10 +13,11 @@ Ergast.js is a simple, portable, zero dependency API wrapper for the F1 API [Erg
 
 ## Features
 
--   📦 Lightweight, with zero dependencies
--   🌎 Supports Deno, Node, the web, and even service workers. Also comes with built-in Typescript types
--   🔰 Very easy to use, batteries included API
--   📅 Automatically transforms properties like dates into their native JavaScript datatype
+- 🪶 Lightweight, with zero dependencies
+- 📦 Built in caching for web runtimes (Node.js coming soon) using the Cachestorage API.
+- 🌎 Supports Deno, Node, the web, and even service workers. Also comes with built-in Typescript types
+- 🔰 Very easy to use, batteries included API
+- 📅 Automatically transforms properties like dates into their native JavaScript datatype
 
 ## Get started
 
@@ -38,8 +39,8 @@ If you want, you can also set a default season and round by passing `season` and
 ```js
 import Ergast from "ergast";
 const F1Data = new Ergast({
-	season: 2023, // Once again, completely optional
-	round: 2,
+  season: 2023, // Once again, completely optional
+  round: 2,
 });
 ```
 
@@ -49,7 +50,7 @@ Now, you can start using the API. The API itself is rather simple and is documen
 
 ```js
 const driverData = await F1Data.drivers.get(
-	/*driver id, normally their last name*/ "albon"
+  /*driver id, normally their last name*/ "albon"
 );
 console.log(driverData);
 /*

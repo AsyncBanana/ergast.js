@@ -68,15 +68,13 @@ export default class Standings extends SubClass {
 	async getDriverStandings(
 		year: number | "current" = this.season,
 		round: number = this.round,
-	): Promise<DriverStanding[] | undefined> {
+	): Promise<DriverStanding[]> {
 		const res = (
-			await (
-				await fetch(
-					`${this.endpoint}/${year || "current"}${
-						round ? `/${round}` : ""
-					}/driverStandings.json`,
-				)
-			).json()
+			await this.cache.fetch(
+				`${this.endpoint}/${year || "current"}${
+					round ? `/${round}` : ""
+				}/driverStandings.json`,
+			)
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No standings found");
@@ -94,15 +92,13 @@ export default class Standings extends SubClass {
 	async getConstructorStandings(
 		year: number | "current" = this.season,
 		round: number = this.round,
-	): Promise<ConstructorStanding[] | undefined> {
+	): Promise<ConstructorStanding[]> {
 		const res = (
-			await (
-				await fetch(
-					`${this.endpoint}/${year || "current"}${
-						round ? `/${round}` : ""
-					}/constructorStandings.json`,
-				)
-			).json()
+			await this.cache.fetch(
+				`${this.endpoint}/${year || "current"}${
+					round ? `/${round}` : ""
+				}/constructorStandings.json`,
+			)
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No standings found");

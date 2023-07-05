@@ -17,7 +17,7 @@ export default class APICache {
 		await cache.delete(url);
 	}
 	async set(url: string, response: Response) {
-		if (!this.#cache) return;
+		if (!this.#cache) return response;
 		const cache = await this.#cache;
 		cache.delete(url);
 		await cache.put(

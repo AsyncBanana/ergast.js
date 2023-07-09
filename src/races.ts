@@ -140,8 +140,9 @@ export default class Races extends SubClass {
 	async getSchedule(
 		season: number | "current" = this.season,
 	): Promise<ScheduledRace[]> {
-		const res = (await this.cache.fetch(`${this.endpoint}/${season}.json`))
-			.MRData;
+		const res = (
+			await this.cache.fetch(`${this.endpoint}/${season}.json?limit=999`)
+		).MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");
 		}
@@ -160,7 +161,9 @@ export default class Races extends SubClass {
 	): Promise<Race> {
 		const res = (
 			await this.cache.fetch(
-				`${this.endpoint}/${season}/${round || "latest"}/results.json`,
+				`${this.endpoint}/${season}/${
+					round || "latest"
+				}/results.json?limit=999`,
 			)
 		).MRData;
 		if (res.total < 1) {
@@ -176,7 +179,9 @@ export default class Races extends SubClass {
 	 */
 	async getAll(season: number | "current" = this.season): Promise<Race[]> {
 		const res = (
-			await this.cache.fetch(`${this.endpoint}/${season}/results.json`)
+			await this.cache.fetch(
+				`${this.endpoint}/${season}/results.json?limit=999`,
+			)
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No races found");

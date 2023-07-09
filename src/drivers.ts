@@ -40,7 +40,9 @@ export default class Drivers extends SubClass {
 	 */
 	async get(driverId: string): Promise<Driver> {
 		const res = (
-			await this.cache.fetch(`${this.endpoint}/drivers/${driverId}.json`)
+			await this.cache.fetch(
+				`${this.endpoint}/drivers/${driverId}.json?limit=999`,
+			)
 		).MRData;
 		if (res.total < 1) {
 			throw new Error("No driver found");
@@ -62,7 +64,7 @@ export default class Drivers extends SubClass {
 			await this.cache.fetch(
 				`${this.endpoint}${year ? `/${year}` : ""}${
 					round ? `/${round}` : ""
-				}/drivers.json`,
+				}/drivers.json?limit=999`,
 			)
 		).MRData;
 		if (res.total < 1) {

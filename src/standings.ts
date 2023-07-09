@@ -97,7 +97,7 @@ export default class Standings extends SubClass {
 			await this.cache.fetch(
 				`${this.endpoint}/${year || "current"}${
 					round ? `/${round}` : ""
-				}/constructorStandings.json`,
+				}/constructorStandings.json?limit=999`,
 			)
 		).MRData;
 		if (res.total < 1) {

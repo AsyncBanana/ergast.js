@@ -26,7 +26,7 @@ export default class ErgastAPI extends Core {
 		const {
 			season = "current",
 			round,
-			ttl = 10,
+			ttl = 1800, // 30 minutes
 			endpoint = "https://ergast.com/api/f1",
 		} = Config;
 		super({

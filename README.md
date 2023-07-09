@@ -5,9 +5,9 @@
 ![MIT License Badge](https://img.shields.io/npm/l/ergast?style=for-the-badge) ![Zero Dependencies Badge](https://img.shields.io/badge/Dependencies-0-darkgreen?style=for-the-badge)
 ![Compressed package size](https://img.shields.io/bundlephobia/minzip/ergast?style=for-the-badge) ![NPM Version](https://img.shields.io/npm/v/ergast?style=for-the-badge)
 
-**Currently unstable and incomplete; Not all data APIs available**
+**Currently unstable and incomplete; Not all data APIs are available**
 
-Ergast.js is a simple, portable, zero dependency API wrapper for the F1 API [Ergast](http://ergast.com/mrd/). It can be run on Node.js, the browser, or almost anywehere else JavaScript can be run, and is written entirely in TypeScript.
+Ergast.js is a simple, portable, zero dependency API wrapper for the F1 API [Ergast](http://ergast.com/mrd/). It can be run on Node.js, the browser, or almost anywhere else JavaScript can be run, and is written entirely in TypeScript.
 
 </div>
 
@@ -34,13 +34,14 @@ import Ergast from "ergast";
 const F1Data = new Ergast();
 ```
 
-If you want, you can also set a default season and round by passing `season` and `round` as an properties in the configuration object. If you do not set them, they will default to the current year and every round that year.
+If you want, you can also set a default season and round by passing `season` and `round` as properties in the configuration object. If you do not set them, they will default to the current year and every round that year. You can also specify the TTL (time-to-live) of the cache by passing a `ttl` property with the number of seconds (however, note that the cache currently does not work in Node.js). It defaults to 30 minutes.
 
 ```js
 import Ergast from "ergast";
 const F1Data = new Ergast({
   season: 2023, // Once again, completely optional
   round: 2,
+  ttl: 18000,
 });
 ```
 
@@ -95,7 +96,7 @@ console.log(raceData)
 ]
 ```
 
-Once again, to find information on all current available API methods, simply look at the type declaration files. Most modern IDEs also show available methods and the attached annotations automatically.
+Once again, to find information on all currently available API methods, simply look at the type declaration files. Most modern IDEs also show available methods and the attached annotations automatically.
 
 ## Contributing
 

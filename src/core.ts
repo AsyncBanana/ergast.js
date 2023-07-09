@@ -10,7 +10,7 @@ export interface Config {
 	 */
 	round?: number;
 	/**
-	 * Cache TTL. Currently unused
+	 * Cache TTL. Specify in seconds. Defaults to 1800 (30 minutes)
 	 */
 	ttl: number;
 	/**
@@ -38,7 +38,7 @@ export default class Core implements Config {
 	constructor({
 		season = "current",
 		round,
-		ttl = 120,
+		ttl = 1800,
 		endpoint = "https://ergast.com/api/f1",
 	}: Options) {
 		this.season = season;

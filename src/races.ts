@@ -19,7 +19,7 @@ export interface Result {
 		millis: number;
 		time: string;
 	};
-	FastestLap: Lap;
+	FastestLap?: Lap;
 }
 /**
  * @internal
@@ -39,7 +39,7 @@ export interface _BaseResult {
 		millis: string;
 		time: string;
 	};
-	FastestLap: _BaseLap;
+	FastestLap?: _BaseLap;
 }
 
 export interface ScheduledRace {
@@ -108,7 +108,9 @@ function _transformResult(result: _BaseResult): Result {
 			...result.Time,
 			millis: +result.Time,
 		},
-		FastestLap: _transformLap(result.FastestLap),
+		FastestLap: result.FastestLap
+			? _transformLap(result.FastestLap)
+			: undefined,
 	};
 }
 function _transformRace(race: _BaseRace): Race {

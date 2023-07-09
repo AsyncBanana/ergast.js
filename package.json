@@ -1,6 +1,6 @@
 {
 	"name": "ergast",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"description": "A simple, portable, zero dependency API wrapper for the F1 API Ergast.",
 	"scripts": {
 		"build": "tsc",
